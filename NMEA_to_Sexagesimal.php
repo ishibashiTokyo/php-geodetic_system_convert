@@ -9,22 +9,22 @@ echo '緯度：' . $latitude . PHP_EOL;
 
 echo '度分秒表記' . PHP_EOL;
 
-$_longitude_DoHunByou = nmeaToSexagesimal($longitude);
-$_latitude_DoHunByou = nmeaToSexagesimal($latitude);
+$_longitude_DMS = nmeaToSexagesimal($longitude);
+$_latitude_DMS = nmeaToSexagesimal($latitude);
 
-printf('経度：%d度%d分%s秒' . PHP_EOL, $_longitude_DoHunByou['do'], $_longitude_DoHunByou['hun'], $_longitude_DoHunByou['byou']);
-printf('緯度：%d度%d分%s秒' . PHP_EOL, $_latitude_DoHunByou['do'], $_latitude_DoHunByou['hun'], $_latitude_DoHunByou['byou']);
+printf('経度：%d度%d分%s秒' . PHP_EOL, $_longitude_DMS['D'], $_longitude_DMS['M'], $_longitude_DMS['S']);
+printf('緯度：%d度%d分%s秒' . PHP_EOL, $_latitude_DMS['D'], $_latitude_DMS['M'], $_latitude_DMS['S']);
 
 function nmeaToSexagesimal($coordinate)
 {
     $coordinate = $coordinate / 100;
-    $_['do'] = floor($coordinate);
+    $_['D'] = floor($coordinate);
 
-    $_hun_int = ($coordinate - $_['do']) * 100;
-    $_['hun'] = floor($_hun_int);
+    $_M_int = ($coordinate - $_['D']) * 100;
+    $_['M'] = floor($_M_int);
 
-    $_['byou'] = ($_hun_int - $_['hun']) / (1 / 60);
-    $_['byou'] = round($_['byou'], 1);
+    $_['S'] = ($_M_int - $_['M']) / (1 / 60);
+    $_['S'] = round($_['S'], 1);
 
     return $_;
 }

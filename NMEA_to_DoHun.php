@@ -9,17 +9,17 @@ echo '緯度：' . $latitude . PHP_EOL;
 
 echo '度分表記' . PHP_EOL;
 
-$_longitude_DoHun = nmeaToDoHun($longitude);
-$_latitude_DoHun = nmeaToDoHun($latitude);
+$_longitude_DM = nmeaToDM($longitude);
+$_latitude_DM = nmeaToDM($latitude);
 
-printf('経度：%d度%f分' . PHP_EOL, $_longitude_DoHun['do'], $_longitude_DoHun['hun']);
-printf('緯度：%d度%f分' . PHP_EOL, $_latitude_DoHun['do'], $_latitude_DoHun['hun']);
+printf('経度：%d度%f分' . PHP_EOL, $_longitude_DM['D'], $_longitude_DM['M']);
+printf('緯度：%d度%f分' . PHP_EOL, $_latitude_DM['D'], $_latitude_DM['M']);
 
-function nmeaToDoHun($coordinate)
+function nmeaToDM($coordinate)
 {
     $coordinate = $coordinate / 100;
-    $_['do'] = floor($coordinate);
-    $_['hun'] = ($coordinate - $_['do']) * 100;
+    $_['D'] = floor($coordinate);
+    $_['M'] = ($coordinate - $_['D']) * 100;
 
     return $_;
 }

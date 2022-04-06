@@ -9,18 +9,18 @@ echo '緯度：' . $latitude . PHP_EOL;
 
 echo '度分表記' . PHP_EOL;
 
-$_longitude_DoHun = nmeaToDecimal($longitude);
-$_latitude_DoHun = nmeaToDecimal($latitude);
+$_longitude_D = nmeaToDecimal($longitude);
+$_latitude_D = nmeaToDecimal($latitude);
 
-printf('経度：%s度' . PHP_EOL, $_longitude_DoHun['do']);
-printf('緯度：%s度' . PHP_EOL, $_latitude_DoHun['do']);
+printf('経度：%s度' . PHP_EOL, $_longitude_D['D']);
+printf('緯度：%s度' . PHP_EOL, $_latitude_D['D']);
 
 function nmeaToDecimal($coordinate)
 {
     $coordinate = $coordinate / 100;
-    $_['do'] = floor($coordinate);
-    $_['hun'] = ($coordinate - $_['do']) * 100 * (1 / 60);
+    $_['D'] = floor($coordinate);
+    $_['M'] = ($coordinate - $_['D']) * 100 * (1 / 60);
 
-    $_['do'] = $_['do'] + $_['hun'];
+    $_['D'] = $_['D'] + $_['M'];
     return $_;
 }
