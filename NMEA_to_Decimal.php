@@ -7,7 +7,7 @@ echo '経度：' . $longitude . PHP_EOL;
 echo '緯度：' . $latitude . PHP_EOL;
 
 
-echo '度分表記' . PHP_EOL;
+echo '度表記' . PHP_EOL;
 
 $_longitude_D = nmeaToDecimal($longitude);
 $_latitude_D = nmeaToDecimal($latitude);
